@@ -79,7 +79,7 @@ module.exports = class Plugin {
         const func = this.serverless.service.functions[name];
         await this.compile(name, func);
       },
-      { concurrency: 1 }
+      { concurrency: process.env.CPUS || os.cpus().length }
     );
     const timeEnd = process.hrtime(timeStart);
 
